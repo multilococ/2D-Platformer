@@ -23,11 +23,8 @@ public class PlayerMover : MonoBehaviour
 
     private void Move()
     {
-        float axisX = Input.GetAxisRaw(Horizontal);
-
-        _movementDirection.x = axisX;
+        _movementDirection.x = Input.GetAxisRaw(Horizontal);
         _movementDirection.x *= _runSpeed;
-        _movementDirection.y = _rigidbody.velocity.y;
-        _rigidbody.velocity = _movementDirection;
+        _rigidbody.AddForce(_movementDirection);
     }
 }
