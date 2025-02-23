@@ -1,43 +1,33 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
 public class Jumper : MonoBehaviour
 {
+    [SerializeField] private UserInput _userInput;
+    [SerializeField] private Player _player;
+    [SerializeField] private GroundChecker _groundChecker;
+
     [SerializeField] private float _jumpForce = 10f;
-   
-    private readonly string Jump = nameof(Jump);
-    private readonly string Ground = nameof(Ground);
 
     private Rigidbody2D _rigidbody2D;
 
-    private float _minDistanceToGround = 0.05f;
-
-    private bool _isGrounded;
-
-    public bool IsGrounded => _isGrounded;
-
     private void Awake()
     {
-        _isGrounded = true;
-        _rigidbody2D = GetComponent<Rigidbody2D>();
+        _rigidbody2D = _player.GetRigidbody;
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        RaycastHit2D hit = Physics2D.Raycast(_rigidbody2D.position, Vector2.down, _minDistanceToGround, LayerMask.GetMask(Ground));
+        _userInput.PressedSpace += MakeJamp;
+    }
 
-        if (hit.collider != null)
-        {
-            _isGrounded = true;
-        }
-        else 
-        {
-            _isGrounded = false;
-        }
+    private void OnDisable()
+    {
+        _userInput.PressedSpace -= MakeJamp;
+    }
 
-        if (Input.GetButtonDown(Jump) && _isGrounded) 
-        {
+    private void MakeJamp()
+    {
+        if (_groundChecker.IsGrounded)
             _rigidbody2D.AddForce(Vector2.up * _jumpForce, ForceMode2D.Impulse);
-        }
     }
 }

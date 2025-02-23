@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerMover : MonoBehaviour
 {
     [SerializeField] private float _runSpeed = 2f;
+    [SerializeField] private UserInput _userInput;
 
     private readonly string Horizontal = nameof(Horizontal);
 
@@ -23,7 +24,7 @@ public class PlayerMover : MonoBehaviour
 
     private void Move()
     {
-        _movementDirection.x = Input.GetAxisRaw(Horizontal);
+        _movementDirection.x = _userInput.GetAxisX;
         _movementDirection.x *= _runSpeed;
         _rigidbody.AddForce(_movementDirection);
     }

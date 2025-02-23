@@ -3,13 +3,13 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimationController : MonoBehaviour
 {
-    [SerializeField] private Jumper _jumper;
-
-    private Animator _animator;
+    [SerializeField] private GroundChecker _groundChecker;
+    [SerializeField] private UserInput _userInput;
 
     private readonly string MoveSpeed = nameof(MoveSpeed);
     private readonly string Jump = nameof(Jump);
-    private readonly string Horizontal = nameof(Horizontal);
+
+    private Animator _animator;
 
     private void Awake()
     {
@@ -18,10 +18,10 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void Update()
     {
-        if (_jumper.IsGrounded == true)
-            _animator.SetFloat(MoveSpeed, Mathf.Abs(Input.GetAxisRaw(Horizontal)));
+        if (_groundChecker.IsGrounded == true)
+            _animator.SetFloat(MoveSpeed, Mathf.Abs(_userInput.GetAxisX));
         
-        if(_jumper.IsGrounded == false)
+        if(_groundChecker.IsGrounded == false)
             _animator.SetBool(Jump,true);
         else
             _animator.SetBool(Jump,false);
