@@ -1,14 +1,12 @@
 using UnityEngine;
 
-public class GroundChecker : MonoBehaviour 
+public class GroundChecker : MonoBehaviour
 {
-    [SerializeField] private Player _player;
+    [SerializeField] private float _overlapRadius = 0.1f;
 
-    private readonly string Ground = nameof(Ground);
+    private const string Ground = nameof(Ground);
 
-    private Rigidbody2D _rigidbody2D;
-    
-    private float _minDistanceToGround = 0.05f;
+    private LayerMask groundMask;
 
     private bool _isGrounded;
 
@@ -16,18 +14,18 @@ public class GroundChecker : MonoBehaviour
 
     private void Awake()
     {
-        _rigidbody2D = _player.GetRigidbody;
+        groundMask = LayerMask.GetMask(Ground);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        _isGrounded = GetGroundUnderFootState();
+        _isGrounded = HasGround();
     }
 
-    public bool GetGroundUnderFootState()
+    public bool HasGround()
     {
-        RaycastHit2D hit = Physics2D.Raycast(_rigidbody2D.position, Vector2.down, _minDistanceToGround, LayerMask.GetMask(Ground));
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, _overlapRadius, groundMask);
 
-        return hit.collider != null;
+        return hit != null && hit.TryGetComponent(out Ground ground);
     }
 }

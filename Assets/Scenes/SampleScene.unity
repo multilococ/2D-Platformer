@@ -361,7 +361,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 987ecd2f19b376c428b23a0dd19e869c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.053
+  m_Volume: 1
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1548,6 +1548,7 @@ GameObject:
   - component: {fileID: 1002879621}
   - component: {fileID: 1002879620}
   - component: {fileID: 1002879619}
+  - component: {fileID: 1002879624}
   m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
@@ -22688,6 +22689,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1002879624
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1002879617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fb13ce89793326409894309e9447820, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1060246692
 GameObject:
   m_ObjectHideFlags: 0
@@ -22699,7 +22712,6 @@ GameObject:
   - component: {fileID: 1060246693}
   - component: {fileID: 1060246694}
   - component: {fileID: 1060246695}
-  - component: {fileID: 1060246696}
   - component: {fileID: 1060246697}
   m_Layer: 0
   m_Name: Warrior
@@ -22796,19 +22808,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1060246696
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060246692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ecc771b21cf34e949b0d00ebd7c05399, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _userInput: {fileID: 349819747}
 --- !u!114 &1060246697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22867,10 +22866,10 @@ GameObject:
   - component: {fileID: 1177292731}
   - component: {fileID: 1177292732}
   - component: {fileID: 1177292729}
-  - component: {fileID: 1177292728}
-  - component: {fileID: 1177292730}
   - component: {fileID: 1177292733}
   - component: {fileID: 1177292734}
+  - component: {fileID: 1177292735}
+  - component: {fileID: 1177292736}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -22908,9 +22907,9 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 3.5
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 7
+  m_GravityScale: 6
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -22922,20 +22921,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!114 &1177292728
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177292724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19baa9ec3d7f0ae4e8eced474609a3e0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _runSpeed: 65
-  _userInput: {fileID: 349819747}
 --- !u!114 &1177292729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22948,24 +22933,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa66f2658a652304fb313cf8037d7d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody2D: {fileID: 1177292727}
-  _userInput: {fileID: 0}
---- !u!114 &1177292730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1177292724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17b4a13f89b0f52498f81e2bcb43503a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   _userInput: {fileID: 349819747}
-  _player: {fileID: 1177292729}
-  _groundChecker: {fileID: 1177292733}
-  _jumpForce: 26
+  _jumper: {fileID: 1177292735}
+  _playerMover: {fileID: 0}
 --- !u!70 &1177292731
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -23058,7 +23028,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: affbb9cbac2d7894a8e305cf35d706fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 1177292729}
+  _overlapRadius: 0.05
 --- !u!114 &1177292734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23071,6 +23041,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4daff9ee88dbf8a40867d92cc6e18218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1177292735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177292724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17b4a13f89b0f52498f81e2bcb43503a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _jumpForce: 10
+  _groundChecker: {fileID: 1177292733}
+--- !u!114 &1177292736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1177292724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19baa9ec3d7f0ae4e8eced474609a3e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _runSpeed: 10
 --- !u!1 &1242080246
 GameObject:
   m_ObjectHideFlags: 0
