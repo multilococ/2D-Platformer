@@ -1,69 +1,32 @@
-using System;
-using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private Transform[] _wayPoints;
-    [SerializeField] private EnemyMover _enemyMover;
-    [SerializeField] private EnemyAnimationController _enemyAnimationController;
-    [SerializeField] private EnemySpriteFliper _enemySpriteFliper;
-    [SerializeField] private float _waitingDelay = 2f;
+    [SerializeField] private Patrol _patrol;
+    [SerializeField] private EnemyAnimationController _animationController;
 
-    private WaitForSeconds _waitingTime;
+    private SpriteFliper _fliper = new SpriteFliper();
 
-    private int _currentWayPointIndex = 0;
-
-    private float _minDistanceToTarget = 0.1f;
-
-    private Coroutine _coroutine;
-
-    private void Awake()
-    {
-        _waitingTime = new WaitForSeconds(_waitingDelay); 
-    }
-
-    private void Start()
-    {
-        _enemySpriteFliper.Flip(transform, _wayPoints[_currentWayPointIndex]);
-    }
+    private bool _fliped = true;
 
     private void Update()
     {
-        MovingWithWaiting();
-    }
+        _patrol.MovingWithWaiting();
 
-    private void MovingWithWaiting()
-    {
-        if (_wayPoints.Length < 1)
+        if (_patrol.IsMoving == true)
         {
-            throw new InvalidOperationException();
+            _animationController.PlayWalkingAnim();
+
+            if (_fliped == false)
+            {
+                _fliped = true;
+                _fliper.Flip(transform);
+            }
         }
         else
         {
-            if (transform.position.IsEnoughClose(_wayPoints[_currentWayPointIndex].position, _minDistanceToTarget))
-            {
-                if (_coroutine == null) 
-                {
-                    _coroutine = StartCoroutine(Stand());
-                }
-            }
-            else 
-            {
-                _enemyMover.Move(_wayPoints[_currentWayPointIndex].position);   
-            }
+            _animationController.PlayWaitingAnim();
+            _fliped = false;
         }
-    }
-  
-    private IEnumerator Stand() 
-    {
-        _enemyAnimationController.PlayWaitingAnim();
-
-        yield return _waitingTime;
-
-        _currentWayPointIndex = (_currentWayPointIndex + 1) % _wayPoints.Length;
-        _enemySpriteFliper.Flip(transform, _wayPoints[_currentWayPointIndex]);
-        _enemyAnimationController.PlayWalkingAnim();
-        _coroutine = null;
     }
 }

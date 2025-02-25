@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class EnemyAnimationController : MonoBehaviour
 {
-    private readonly string isStanding = nameof(isStanding);
-
     [SerializeField] private Animator _animator;
+
+    private readonly int isStanding = Animator.StringToHash(nameof(isStanding));
 
     public void PlayWaitingAnim() 
     {

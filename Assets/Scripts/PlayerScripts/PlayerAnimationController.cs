@@ -3,27 +3,18 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class PlayerAnimationController : MonoBehaviour
 {
-    [SerializeField] private GroundChecker _groundChecker;
-    [SerializeField] private UserInput _userInput;
+    [SerializeField] private Animator _animator;
 
-    private readonly string MoveSpeed = nameof(MoveSpeed);
-    private readonly string Jump = nameof(Jump);
+    private readonly int MoveSpeed = Animator.StringToHash(nameof(MoveSpeed));
+    private readonly int Jump = Animator.StringToHash(nameof(Jump));
 
-    private Animator _animator;
-
-    private void Awake()
+    public void SetMoveAnimation(float value) 
     {
-        _animator = GetComponent<Animator>();
+        _animator.SetFloat(MoveSpeed, Mathf.Abs(value));
     }
 
-    private void Update()
+    public void SetJumpAnimation(bool value) 
     {
-        if (_groundChecker.IsGrounded == true)
-            _animator.SetFloat(MoveSpeed, Mathf.Abs(_userInput.GetAxisX));
-        
-        if(_groundChecker.IsGrounded == false)
-            _animator.SetBool(Jump,true);
-        else
-            _animator.SetBool(Jump,false);
+        _animator.SetBool(Jump, value);
     }
 }

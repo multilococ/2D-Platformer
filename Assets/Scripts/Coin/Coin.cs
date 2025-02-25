@@ -1,32 +1,17 @@
-using System.Collections;
+using System;
 using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    [SerializeField] private CircleCollider2D _circleCollider;
-    [SerializeField] private SpriteRenderer _coinSprite;
-    
-    [SerializeField] private float _showDelay = 10f;
+    public event Action<Coin> Collected;
 
-    private WaitForSeconds _delayTime;
-
-    private void Awake()
+    public void Init(Transform spawnPoint) 
     {
-        _delayTime = new WaitForSeconds(_showDelay);
+        transform.position = spawnPoint.position;
     }
 
     public void Take()
     {
-        _coinSprite.enabled = false;
-        _circleCollider.enabled = false;
-        StartCoroutine(ShowCoinWithDelay());
-    }
-
-    private IEnumerator ShowCoinWithDelay()
-    {
-        yield return _delayTime;
-
-        _circleCollider.enabled = true;
-        _coinSprite.enabled = true;
+        Collected?.Invoke(this);
     }
 }
