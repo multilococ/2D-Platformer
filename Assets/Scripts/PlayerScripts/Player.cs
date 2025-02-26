@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Jumper _jumper;
     [SerializeField] private PlayerMover _playerMover;
     [SerializeField] private GroundChecker _groundChecker;
-    [SerializeField] private PlayerAnimationController _playerAnimationController;
+    [SerializeField] private PlayerAnimator _playerAnimator;
 
     private SpriteFliper _spriteFliper = new SpriteFliper();
 
@@ -26,11 +26,8 @@ public class Player : MonoBehaviour
         if (_userInput.GetAxisX != 0 && _userInput.GetAxisX != _currentDirection)
         {
             _currentDirection = _userInput.GetAxisX;
-            _spriteFliper.Flip(transform);
+            _spriteFliper.Flip(transform,_userInput.GetAxisX);
         }
-
-        if (_userInput.GetAxisX != 0)
-            _currentDirection = _userInput.GetAxisX;
 
         if (_userInput.GetAxisX != 0)
             _playerMover.Move(_rigidbody2D, _userInput.GetAxisX);
@@ -39,8 +36,8 @@ public class Player : MonoBehaviour
             _jumper.MakeJamp(_rigidbody2D);
 
         if (_groundChecker.IsGrounded == true)
-            _playerAnimationController.SetMoveAnimation(_userInput.GetAxisX);
+            _playerAnimator.SetMoveAnimation(_userInput.GetAxisX);
 
-            _playerAnimationController.SetJumpAnimation(_groundChecker.IsGrounded != true);
+            _playerAnimator.SetJumpAnimation(_groundChecker.IsGrounded != true);
     }
 }

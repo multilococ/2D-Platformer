@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,48 +6,50 @@ using UnityEngine;
 public class CoinSpawner : MonoBehaviour
 {
     [SerializeField] private List<CoinSpawnPoint> _spawnPoints;
+    
     [SerializeField] private int _spawnDelay = 5;
 
-    private List<CoinSpawnPoint> _emptySpawnPoints;
-
-    private int _spawnCount = 100;
+    private WaitForSeconds _waitForSeconds;
 
     private void Start()
     {
-        StartCoroutine(SpawnCoinWithDelay());
-    }
-
-    private List<CoinSpawnPoint> GetEmptySpawnPoints()
-    {
-        List<CoinSpawnPoint> emptySpawnPoints = new List<CoinSpawnPoint>();
-
-        for (int i = 0; i < _spawnPoints.Count; i++)
+        if (_spawnPoints.Count < 1)
         {
-            if (_spawnPoints[i].HasCoin == false)
-                emptySpawnPoints.Add(_spawnPoints[i]);
+            throw new InvalidOperationException();
         }
 
-        return emptySpawnPoints;
+        _waitForSeconds = new WaitForSeconds(_spawnDelay);
+        SpawnAllCoins();
     }
 
-    private IEnumerator SpawnCoinWithDelay()
+    private void OnEnable()
     {
-        WaitForSeconds waitForSeconds = new WaitForSeconds(_spawnDelay);
+        foreach (CoinSpawnPoint spawnPoint in _spawnPoints)
+            spawnPoint.Devastated += DetectEmptySpawnPoint;
+    }
 
-        for (int i = 0; i < _spawnCount; i++)
-        {
-            _emptySpawnPoints = GetEmptySpawnPoints();
+    private void OnDisable()
+    {
+        foreach(CoinSpawnPoint spawnPoint in _spawnPoints)
+            spawnPoint.Devastated -= DetectEmptySpawnPoint;
+    }
 
-            for (int j = 0; j < _emptySpawnPoints.Count; j++)
-            {
-                _emptySpawnPoints[j].SpawnCoin();
-                Debug.Log("Spawn Coin");
-            }
+    private void DetectEmptySpawnPoint(CoinSpawnPoint spawnPoint)
+    {
+        StartCoroutine(SpawnCoinWithDelay(spawnPoint));
+    }
+ 
+    private void SpawnAllCoins()
+    {
+        foreach (CoinSpawnPoint spawnPoint in _spawnPoints)
+            spawnPoint.SpawnCoin();
+    }
 
-            if (_emptySpawnPoints.Count == 0)
-                i = 0;
+    private IEnumerator SpawnCoinWithDelay(CoinSpawnPoint spawnPoint)
+    {
+        yield return _waitForSeconds;
 
-            yield return waitForSeconds;
-        }
+        Debug.Log("SpawnCoin in : " + spawnPoint.name);
+        spawnPoint.SpawnCoin();
     }
 }

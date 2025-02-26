@@ -7,15 +7,13 @@ public class UserInput : MonoBehaviour
 
     private float _axisX;
 
-    private bool _isJump;
-
     public float GetAxisX => _axisX;
 
-    public bool IsJump => _isJump;
+    public bool IsJump { private set; get; }
 
     private void Update()
     {
         _axisX = Input.GetAxisRaw(Horizontal);
-        _isJump = Input.GetButton(Jump);
+        IsJump = Input.GetButtonDown(Jump);
     }
 }

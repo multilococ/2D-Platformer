@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyAnimationController : MonoBehaviour
+public class EnemyAnimator : MonoBehaviour
 {
     [SerializeField] private Animator _animator;
 

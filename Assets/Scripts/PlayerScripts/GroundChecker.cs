@@ -2,15 +2,13 @@ using UnityEngine;
 
 public class GroundChecker : MonoBehaviour
 {
-    [SerializeField] private float _overlapRadius = 0.1f;
-
     private const string Ground = nameof(Ground);
+
+    [SerializeField] private float _overlapRadius = 0.1f;
 
     private LayerMask groundMask;
 
-    private bool _isGrounded;
-
-    public bool IsGrounded => _isGrounded;
+    public bool IsGrounded { private set; get; }
 
     private void Awake()
     {
@@ -19,7 +17,7 @@ public class GroundChecker : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _isGrounded = HasGround();
+        IsGrounded = HasGround();
     }
 
     public bool HasGround()

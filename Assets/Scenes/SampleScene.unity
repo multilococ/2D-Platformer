@@ -23062,7 +23062,7 @@ GameObject:
   - component: {fileID: 1060246693}
   - component: {fileID: 1060246694}
   - component: {fileID: 1060246695}
-  - component: {fileID: 1060246697}
+  - component: {fileID: 1060246696}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -23158,7 +23158,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1060246697
+--- !u!114 &1060246696
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -23167,7 +23167,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1060246692}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c551c8e326a7ca4485840cd54c2e751, type: 3}
+  m_Script: {fileID: 11500000, guid: a4f1fa55e08596f4a845316ef5cfe838, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _animator: {fileID: 1060246695}
@@ -23330,7 +23330,7 @@ MonoBehaviour:
   _jumper: {fileID: 1177292735}
   _playerMover: {fileID: 1177292736}
   _groundChecker: {fileID: 1177292733}
-  _playerAnimationController: {fileID: 1060246697}
+  _playerAnimator: {fileID: 1060246696}
 --- !u!61 &1177292732
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -23413,7 +23413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17b4a13f89b0f52498f81e2bcb43503a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _jumpForce: 10
+  _jumpForce: 20
 --- !u!114 &1177292736
 MonoBehaviour:
   m_ObjectHideFlags: 0
