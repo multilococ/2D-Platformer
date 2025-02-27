@@ -42,7 +42,7 @@ public class CoinSpawner : MonoBehaviour
     private void SpawnAllCoins()
     {
         foreach (CoinSpawnPoint spawnPoint in _spawnPoints)
-            spawnPoint.SpawnCoin();
+            spawnPoint.Spawn();
     }
 
     private IEnumerator SpawnCoinWithDelay(CoinSpawnPoint spawnPoint)
@@ -50,6 +50,6 @@ public class CoinSpawner : MonoBehaviour
         yield return _waitForSeconds;
 
         Debug.Log("SpawnCoin in : " + spawnPoint.name);
-        spawnPoint.SpawnCoin();
+        spawnPoint.Spawn();
     }
 }

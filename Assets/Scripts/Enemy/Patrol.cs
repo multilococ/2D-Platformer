@@ -19,7 +19,7 @@ public class Patrol : MonoBehaviour
 
     public Transform NextPosition => _nextPosition;
 
-    public bool IsMoving { private set; get; }
+    public bool IsMoving { get; private set; }
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class Patrol : MonoBehaviour
         }
     }
 
-    public void MovingWithWaiting()
+    public void KeepWatching()
     {
         if (transform.position.IsEnoughClose(_wayPoints[_currentWayPointIndex].position, _minDistanceToTarget))
         {

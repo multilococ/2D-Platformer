@@ -9,19 +9,11 @@ public class Enemy : MonoBehaviour
 
     private Transform _transformToMove;
 
-    private float _leftSide = 1;
-    private float _rightSide = -1;
-
     private void Update()
     {
-        _patrol.MovingWithWaiting();
-
+        _patrol.KeepWatching();
         _transformToMove = _patrol.NextPosition;
-
-        if (transform.position.x < _transformToMove.position.x)
-            _fliper.Flip(transform,_leftSide);
-        else 
-            _fliper.Flip(transform, _rightSide);
+        _fliper.Flip(transform,_transformToMove);
 
         if (_patrol.IsMoving == true)
         {

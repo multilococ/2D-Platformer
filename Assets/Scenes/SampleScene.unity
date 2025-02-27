@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinPool: {fileID: 1678057551}
+  _coinCreater: {fileID: 1678057553}
 --- !u!4 &30494982
 Transform:
   m_ObjectHideFlags: 0
@@ -421,7 +421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinPool: {fileID: 1678057551}
+  _coinCreater: {fileID: 1678057553}
 --- !u!1 &145929293
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,7 +610,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinPool: {fileID: 1678057551}
+  _coinCreater: {fileID: 1678057553}
 --- !u!4 &264217890
 Transform:
   m_ObjectHideFlags: 0
@@ -655,7 +655,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinPool: {fileID: 1678057551}
+  _coinCreater: {fileID: 1678057553}
 --- !u!4 &281800279
 Transform:
   m_ObjectHideFlags: 0
@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinPool: {fileID: 1678057551}
+  _coinCreater: {fileID: 1678057553}
 --- !u!4 &374365707
 Transform:
   m_ObjectHideFlags: 0
@@ -1339,7 +1339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinPool: {fileID: 1678057551}
+  _coinCreater: {fileID: 1678057553}
 --- !u!4 &504435091
 Transform:
   m_ObjectHideFlags: 0
@@ -23231,7 +23231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinPool: {fileID: 1678057551}
+  _coinCreater: {fileID: 1678057553}
 --- !u!4 &1094540697
 Transform:
   m_ObjectHideFlags: 0
@@ -24574,8 +24574,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1678057552}
-  - component: {fileID: 1678057551}
   - component: {fileID: 1678057550}
+  - component: {fileID: 1678057553}
   m_Layer: 0
   m_Name: CoinSpawner
   m_TagString: Untagged
@@ -24605,19 +24605,6 @@ MonoBehaviour:
   - {fileID: 281800278}
   - {fileID: 30494981}
   _spawnDelay: 5
---- !u!114 &1678057551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1678057549}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 81736b4ccb4035d41bfd01b089c67e49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _prefab: {fileID: 6816902457240742353, guid: 6d5938810013a804c95b6904f8e798c8, type: 3}
 --- !u!4 &1678057552
 Transform:
   m_ObjectHideFlags: 0
@@ -24633,6 +24620,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1678057553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678057549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912af7a8076ffb94d926bc3658a20c98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 6816902457240742353, guid: 6d5938810013a804c95b6904f8e798c8, type: 3}
 --- !u!1 &1789472689
 GameObject:
   m_ObjectHideFlags: 0
@@ -24677,7 +24677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinPool: {fileID: 1678057551}
+  _coinCreater: {fileID: 1678057553}
 --- !u!114 &1821866666
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -2,17 +2,19 @@ using UnityEngine;
 
 public class EnemyAnimator : MonoBehaviour
 {
-    [SerializeField] private Animator _animator;
+    private const string IsStanding = nameof (IsStanding);
 
-    private readonly int isStanding = Animator.StringToHash(nameof(isStanding));
+    [SerializeField] private Animator _animator;
+ 
+    private readonly int _isStanding = Animator.StringToHash(nameof(IsStanding));
 
     public void PlayWaitingAnim() 
     {
-        _animator.SetBool(isStanding, true);
+        _animator.SetBool(_isStanding, true);
     }
 
     public void PlayWalkingAnim() 
     {
-        _animator.SetBool(isStanding, false);
+        _animator.SetBool(_isStanding, false);
     }
 }

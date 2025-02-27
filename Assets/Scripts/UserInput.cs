@@ -7,9 +7,9 @@ public class UserInput : MonoBehaviour
 
     private float _axisX;
 
-    public float GetAxisX => _axisX;
+    public float AxisX => _axisX;
 
-    public bool IsJump { private set; get; }
+    public bool IsJump { get;private set; }
 
     private void Update()
     {

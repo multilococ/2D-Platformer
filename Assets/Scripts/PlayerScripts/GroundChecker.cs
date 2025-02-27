@@ -6,13 +6,13 @@ public class GroundChecker : MonoBehaviour
 
     [SerializeField] private float _overlapRadius = 0.1f;
 
-    private LayerMask groundMask;
+    private LayerMask _groundMask;
 
-    public bool IsGrounded { private set; get; }
+    public bool IsGrounded { get; private set; }
 
     private void Awake()
     {
-        groundMask = LayerMask.GetMask(Ground);
+        _groundMask = LayerMask.GetMask(Ground);
     }
 
     private void FixedUpdate()
@@ -22,7 +22,7 @@ public class GroundChecker : MonoBehaviour
 
     public bool HasGround()
     {
-        Collider2D hit = Physics2D.OverlapCircle(transform.position, _overlapRadius, groundMask);
+        Collider2D hit = Physics2D.OverlapCircle(transform.position, _overlapRadius, _groundMask);
 
         return hit != null && hit.TryGetComponent(out Ground ground);
     }

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class CoinPool : MonoBehaviour
+public class CoinCreater : MonoBehaviour
 {
     [SerializeField] private Coin _prefab;
 
@@ -15,12 +15,12 @@ public class CoinPool : MonoBehaviour
         _pool = CreatePool();
     }
 
-    public Coin GetCoin(Transform spawnPoint) 
+    public Coin GetPrefab(Transform spawnPoint) 
     {
         Coin coin = _pool.Get();
 
         coin.Init(spawnPoint);
-        coin.Collected += ReleseCoin;
+        coin.Collected += RelesePrefab;
         return coin;
     }
 
@@ -29,21 +29,21 @@ public class CoinPool : MonoBehaviour
         return new ObjectPool<Coin>(
             createFunc: () => Instantiate(_prefab),
             actionOnRelease: (coin) => coin.gameObject.SetActive(false),
-            actionOnGet: (coin) => SetCoinActive(coin),
+            actionOnGet: (coin) => SetPrefabActive(coin),
             actionOnDestroy: (coin) => Destroy(coin.gameObject),
             collectionCheck: true,
             defaultCapacity: _poolCapacity,
             maxSize: _poolMaxSize) ;
     }
 
-    private void SetCoinActive(Coin coin) 
+    private void SetPrefabActive(Coin coin) 
     {
         coin.gameObject.SetActive(true);
     }
 
-    private void ReleseCoin(Coin coin) 
+    private void RelesePrefab(Coin coin) 
     {
-        coin.Collected -= ReleseCoin;
+        coin.Collected -= RelesePrefab;
         _pool.Release(coin);
     }
 }

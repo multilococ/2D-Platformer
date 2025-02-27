@@ -23,20 +23,20 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (_userInput.GetAxisX != 0 && _userInput.GetAxisX != _currentDirection)
+        if (_userInput.AxisX != 0 && _userInput.AxisX != _currentDirection)
         {
-            _currentDirection = _userInput.GetAxisX;
-            _spriteFliper.Flip(transform,_userInput.GetAxisX);
+            _currentDirection = _userInput.AxisX;
+            _spriteFliper.Flip(transform,_userInput.AxisX);
         }
 
-        if (_userInput.GetAxisX != 0)
-            _playerMover.Move(_rigidbody2D, _userInput.GetAxisX);
+        if (_userInput.AxisX != 0)
+            _playerMover.Move(_rigidbody2D, _userInput.AxisX);
 
         if (_userInput.IsJump && _groundChecker.IsGrounded)
             _jumper.MakeJamp(_rigidbody2D);
 
         if (_groundChecker.IsGrounded == true)
-            _playerAnimator.SetMoveAnimation(_userInput.GetAxisX);
+            _playerAnimator.SetMoveAnimation(_userInput.AxisX);
 
             _playerAnimator.SetJumpAnimation(_groundChecker.IsGrounded != true);
     }

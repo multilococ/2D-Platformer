@@ -3,12 +3,13 @@ using UnityEngine;
 
 public class CoinSpawnPoint : MonoBehaviour
 {
-    [SerializeField] private CoinPool _coinPool;
-    
+    [SerializeField] private CoinCreater _coinCreater;
+
     private Coin _coin;
-    public bool HasCoin { private set; get; }
 
     public event Action<CoinSpawnPoint> Devastated;
+
+    public bool HasCoin { get; private set; }
 
     private void Awake()
     {
@@ -16,16 +17,16 @@ public class CoinSpawnPoint : MonoBehaviour
         HasCoin = false;
     }
 
-    public void SpawnCoin() 
+    public void Spawn()
     {
-        _coin = _coinPool.GetCoin(transform);
+        _coin = _coinCreater.GetPrefab(transform);
         HasCoin = true;
-        _coin.Collected += CoinCollected;
+        _coin.Collected += Collect;
     }
 
-    private void CoinCollected(Coin coin)
+    private void Collect(Coin coin)
     {
-        coin.Collected -= CoinCollected;
+        coin.Collected -= Collect;
         HasCoin = false;
         _coin = null;
         Devastated?.Invoke(this);
