@@ -5,9 +5,9 @@ public class Coin : MonoBehaviour
 {
     public event Action<Coin> Collected;
 
-    public void Init(Transform spawnPoint) 
+    public void Init(Vector3 spawnPointPosition) 
     {
-        transform.position = spawnPoint.position;
+        transform.position = spawnPointPosition;
     }
 
     public void Take()

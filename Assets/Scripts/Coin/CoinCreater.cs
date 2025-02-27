@@ -15,11 +15,11 @@ public class CoinCreater : MonoBehaviour
         _pool = CreatePool();
     }
 
-    public Coin GetPrefab(Transform spawnPoint) 
+    public Coin GetPrefab(Vector3 spawnPointPosition) 
     {
         Coin coin = _pool.Get();
 
-        coin.Init(spawnPoint);
+        coin.Init(spawnPointPosition);
         coin.Collected += RelesePrefab;
         return coin;
     }

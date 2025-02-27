@@ -5,7 +5,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Patrol _patrol;
     [SerializeField] private EnemyAnimator _enemyAnimator;
 
-    private SpriteFliper _fliper = new SpriteFliper();
+    private Fliper _fliper = new Fliper();
 
     private Transform _transformToMove;
 

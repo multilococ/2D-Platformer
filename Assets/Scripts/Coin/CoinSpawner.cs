@@ -9,6 +9,8 @@ public class CoinSpawner : MonoBehaviour
     
     [SerializeField] private int _spawnDelay = 5;
 
+    [SerializeField] private CoinCreater _creater;
+
     private WaitForSeconds _waitForSeconds;
 
     private void Start()
@@ -42,7 +44,7 @@ public class CoinSpawner : MonoBehaviour
     private void SpawnAllCoins()
     {
         foreach (CoinSpawnPoint spawnPoint in _spawnPoints)
-            spawnPoint.Spawn();
+            spawnPoint.SetCoin(_creater.GetPrefab(spawnPoint.transform.position));
     }
 
     private IEnumerator SpawnCoinWithDelay(CoinSpawnPoint spawnPoint)
@@ -50,6 +52,6 @@ public class CoinSpawner : MonoBehaviour
         yield return _waitForSeconds;
 
         Debug.Log("SpawnCoin in : " + spawnPoint.name);
-        spawnPoint.Spawn();
+        spawnPoint.SetCoin(_creater.GetPrefab(spawnPoint.transform.position));
     }
 }

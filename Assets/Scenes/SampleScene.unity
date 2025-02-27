@@ -151,7 +151,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinCreater: {fileID: 1678057553}
 --- !u!4 &30494982
 Transform:
   m_ObjectHideFlags: 0
@@ -421,7 +420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinCreater: {fileID: 1678057553}
 --- !u!1 &145929293
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,7 +608,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinCreater: {fileID: 1678057553}
 --- !u!4 &264217890
 Transform:
   m_ObjectHideFlags: 0
@@ -655,7 +652,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinCreater: {fileID: 1678057553}
 --- !u!4 &281800279
 Transform:
   m_ObjectHideFlags: 0
@@ -1214,7 +1210,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinCreater: {fileID: 1678057553}
 --- !u!4 &374365707
 Transform:
   m_ObjectHideFlags: 0
@@ -1339,7 +1334,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinCreater: {fileID: 1678057553}
 --- !u!4 &504435091
 Transform:
   m_ObjectHideFlags: 0
@@ -23231,7 +23225,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinCreater: {fileID: 1678057553}
 --- !u!4 &1094540697
 Transform:
   m_ObjectHideFlags: 0
@@ -24605,6 +24598,7 @@ MonoBehaviour:
   - {fileID: 281800278}
   - {fileID: 30494981}
   _spawnDelay: 5
+  _creater: {fileID: 0}
 --- !u!4 &1678057552
 Transform:
   m_ObjectHideFlags: 0
@@ -24677,7 +24671,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 61349646e1ba4f845908ffe2724c617a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _coinCreater: {fileID: 1678057553}
 --- !u!114 &1821866666
 MonoBehaviour:
   m_ObjectHideFlags: 0

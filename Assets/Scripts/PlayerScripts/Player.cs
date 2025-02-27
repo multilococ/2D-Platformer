@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private GroundChecker _groundChecker;
     [SerializeField] private PlayerAnimator _playerAnimator;
 
-    private SpriteFliper _spriteFliper = new SpriteFliper();
+    private Fliper _fliper = new Fliper();
 
     private Rigidbody2D _rigidbody2D;
 
@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         if (_userInput.AxisX != 0 && _userInput.AxisX != _currentDirection)
         {
             _currentDirection = _userInput.AxisX;
-            _spriteFliper.Flip(transform,_userInput.AxisX);
+            _fliper.Flip(transform,_userInput.AxisX);
         }
 
         if (_userInput.AxisX != 0)
