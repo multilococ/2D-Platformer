@@ -2,16 +2,17 @@ using UnityEngine;
 
 public class Fliper
 {
-    private float _turn = -180;
+    private float _leftTurn = -180;
+    private float _rightTurn = 0;
 
     public void Flip(Transform flipTransform, float direction)
     {
         Vector3 rotation = flipTransform.rotation.eulerAngles;
 
         if (direction > 0)
-            rotation.y = 0;
+            rotation.y = _rightTurn;
         else
-            rotation.y = _turn;
+            rotation.y = _leftTurn;
 
         flipTransform.rotation = Quaternion.Euler(rotation);
     }
@@ -21,9 +22,9 @@ public class Fliper
         Vector3 rotation = flipedTransform.rotation.eulerAngles;
 
         if (flipedTransform.position.x < nextTransform.position.x)
-            rotation.y = 0;
+            rotation.y = _rightTurn;
         else
-            rotation.y = _turn;
+            rotation.y = _leftTurn;
 
         flipedTransform.rotation = Quaternion.Euler(rotation);
     }
