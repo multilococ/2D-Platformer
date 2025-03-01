@@ -4,24 +4,19 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private Patrol _patrol;
     [SerializeField] private EnemyAnimator _enemyAnimator;
+    [SerializeField] private Fliper _fliper;
 
-    private Fliper _fliper = new Fliper();
-
-    private Transform _transformToMove;
+    private Vector3 _positionToMove;
 
     private void Update()
     {
         _patrol.KeepWatching();
-        _transformToMove = _patrol.NextPosition;
-        _fliper.Flip(transform,_transformToMove);
+        _positionToMove = _patrol.NextPosition;
+        _fliper.Flip(_positionToMove.x - transform.position.x);
 
         if (_patrol.IsMoving == true)
-        {
             _enemyAnimator.PlayWalkingAnim();
-        }
         else
-        {
             _enemyAnimator.PlayWaitingAnim();
-        }
     }
 }

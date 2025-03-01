@@ -10,21 +10,20 @@ public class Patrol : MonoBehaviour
     [SerializeField] private float _waitingDelay = 2f;
 
     private WaitForSeconds _waitingTime;
-    private Transform _nextPosition;
     private Coroutine _coroutine;
 
     private int _currentWayPointIndex = 0;
 
     private float _minDistanceToTarget = 0.1f;
 
-    public Transform NextPosition => _nextPosition;
+    public Vector3 NextPosition { get; private set; }
 
     public bool IsMoving { get; private set; }
 
     private void Awake()
     {
         _waitingTime = new WaitForSeconds(_waitingDelay);
-        _nextPosition = _wayPoints[_currentWayPointIndex];
+        NextPosition = _wayPoints[_currentWayPointIndex].position;
 
         if (_wayPoints.Length < 1)
         {
@@ -55,7 +54,7 @@ public class Patrol : MonoBehaviour
         yield return _waitingTime;
 
         _currentWayPointIndex = ++_currentWayPointIndex % _wayPoints.Length;
-        _nextPosition = _wayPoints[_currentWayPointIndex];
+        NextPosition = _wayPoints[_currentWayPointIndex].position;
         _coroutine = null;
     }
 }

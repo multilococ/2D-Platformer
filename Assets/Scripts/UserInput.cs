@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class UserInput : MonoBehaviour
@@ -5,15 +6,15 @@ public class UserInput : MonoBehaviour
     private readonly string Horizontal = nameof(Horizontal);
     private readonly string Jump = nameof(Jump);
 
-    private float _axisX;
+    public float AxisX { get; private set; }
 
-    public float AxisX => _axisX;
-
-    public bool IsJump { get; private set; }
+    public event Action SpacePresed;
 
     private void Update()
     {
-        _axisX = Input.GetAxisRaw(Horizontal);
-        IsJump = Input.GetButtonDown(Jump);
+        AxisX = Input.GetAxisRaw(Horizontal);
+
+        if (Input.GetButtonDown(Jump))
+         SpacePresed?.Invoke();
     }
 }
