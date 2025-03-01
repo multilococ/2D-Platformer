@@ -8,18 +8,6 @@ public class Fliper : MonoBehaviour
     private float _rightDirection = 1;
     private float _currentDirection = 1;
 
-    public void SetDirection(float direction) 
-    {
-        if (direction > _rightDirection)
-            direction = _rightDirection;
-        else if (direction < _leftDirection)
-            direction = -_leftDirection;
-        else 
-            direction = _rightDirection;
-
-        _currentDirection = direction;
-    }
-
     public void Flip(float direction)
     {
         Vector3 rotation = transform.rotation.eulerAngles;

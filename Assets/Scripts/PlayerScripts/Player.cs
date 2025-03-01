@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     private void Awake()
     {
         _rigidbody2D = GetComponent<Rigidbody2D>();
-        _fliper.SetDirection(transform.localScale.x);
     }
 
     private void OnEnable()
