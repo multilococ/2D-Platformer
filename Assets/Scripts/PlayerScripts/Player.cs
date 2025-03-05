@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     [SerializeField] private GroundChecker _groundChecker;
     [SerializeField] private PlayerAnimator _playerAnimator;
     [SerializeField] private Fliper _fliper;
+    [SerializeField] private Combat _combat;
+    [SerializeField] private Health _healt;
 
     private Rigidbody2D _rigidbody2D;
 
@@ -20,30 +22,44 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         _userInput.SpacePresed += MakeJump;
+        _userInput.LeftMouseButtonPressed += MakeAttack;
     }
 
     private void OnDisable()
     {
         _userInput.SpacePresed -= MakeJump;
+        _userInput.LeftMouseButtonPressed -= MakeAttack;
     }
 
     private void FixedUpdate()
     {
-        if (_userInput.AxisX != 0)
+        if (!_playerAnimator.GetStateOfAttackAnimation())
         {
-            _playerMover.Move(_rigidbody2D, _userInput.AxisX);
-            _fliper.Flip(_userInput.AxisX);
-        }
+            if (_userInput.AxisX != 0)
+            {
+                _playerMover.Move(_rigidbody2D, _userInput.AxisX);
+                _fliper.Flip(_userInput.AxisX);
+            }
 
-        if (_groundChecker.IsGrounded == true)
-            _playerAnimator.SetMoveAnimation(_userInput.AxisX);
+            if (_groundChecker.IsGrounded == true)
+                _playerAnimator.SetMoveAnimation(_userInput.AxisX);
 
             _playerAnimator.SetJumpAnimation(_groundChecker.IsGrounded != true);
+        }
     }
 
-    private void MakeJump() 
+    private void MakeAttack()
     {
-        if (_groundChecker.IsGrounded)
+        if (_groundChecker.IsGrounded && _combat.CanAttack)
+        {
+            _combat.Attack();
+            _playerAnimator.PlayAttackAnimation();
+        }
+    }
+
+    private void MakeJump()
+    {
+        if (_groundChecker.IsGrounded && !_playerAnimator.GetStateOfAttackAnimation())
             _jumper.MakeJump(_rigidbody2D);
     }
 }

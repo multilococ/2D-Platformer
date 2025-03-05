@@ -8,12 +8,12 @@ public class EnemyAnimator : MonoBehaviour
  
     private readonly int _isStanding = Animator.StringToHash(nameof(IsStanding));
 
-    public void PlayWaitingAnim() 
+    public void PlayWaitingAnimation() 
     {
         _animator.SetBool(_isStanding, true);
     }
 
-    public void PlayWalkingAnim() 
+    public void PlayWalkingAnimation() 
     {
         _animator.SetBool(_isStanding, false);
     }
