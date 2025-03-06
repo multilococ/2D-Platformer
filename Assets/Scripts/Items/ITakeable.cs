@@ -1,4 +1,4 @@
 public interface ITakeable
 {
-    public void Take();
+    public void Accept(ItemInteractor interactor);
 }

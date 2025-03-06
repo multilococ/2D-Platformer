@@ -4,11 +4,9 @@ public class MedKit : Item
 {
     [SerializeField] private float _recoverableHealth = 10;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected override void Handle(ItemInteractor interactor)
     {
-        if (collision != null && collision.TryGetComponent(out IHealingable healingable))
-        {
+        if (interactor.TryGetComponent(out IHealingable healingable))
             healingable.ReceiveTreatment(_recoverableHealth);
-        }
     }
 }

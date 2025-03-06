@@ -10,8 +10,14 @@ public class Item : MonoBehaviour, ITakeable
         transform.position = spawnPointPosition;
     }
 
-    public void Take()
+    public void Accept(ItemInteractor interactor)
     {
         Collected?.Invoke(this);
+        Handle(interactor);
+    }
+
+    protected virtual void Handle(ItemInteractor interactor) 
+    {
+        Debug.Log("CoinCollected");   
     }
 }

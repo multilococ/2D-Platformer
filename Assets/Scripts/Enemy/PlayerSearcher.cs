@@ -2,18 +2,14 @@ using UnityEngine;
 
 public class PlayerSearcher : MonoBehaviour
 {
-    private const string Player = nameof(Player);
-
     [SerializeField] private float _overlapRadius = 5f;
-
-    private LayerMask _playerMask;
+    [SerializeField] private LayerMask _playerMask;
 
     public Transform Target { get; private set; }
 
     private void Awake()
     {
         Target = null;
-        _playerMask = LayerMask.GetMask(Player);
     }
 
     private void FixedUpdate()
