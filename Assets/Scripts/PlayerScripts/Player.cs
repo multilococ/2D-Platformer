@@ -3,7 +3,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
-    [SerializeField] private UserInput _userInput;
+    [SerializeField] private UserService _userService;
     [SerializeField] private Jumper _jumper;
     [SerializeField] private PlayerMover _playerMover;
     [SerializeField] private GroundChecker _groundChecker;
@@ -21,28 +21,28 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        _userInput.SpacePresed += MakeJump;
-        _userInput.LeftMouseButtonPressed += MakeAttack;
+        _userService.SpacePresed += MakeJump;
+        _userService.LeftMouseButtonPressed += MakeAttack;
     }
 
     private void OnDisable()
     {
-        _userInput.SpacePresed -= MakeJump;
-        _userInput.LeftMouseButtonPressed -= MakeAttack;
+        _userService.SpacePresed -= MakeJump;
+        _userService.LeftMouseButtonPressed -= MakeAttack;
     }
 
     private void FixedUpdate()
     {
         if (!_playerAnimator.GetStateOfAttackAnimation())
         {
-            if (_userInput.AxisX != 0)
+            if (_userService.AxisX != 0)
             {
-                _playerMover.Move(_rigidbody2D, _userInput.AxisX);
-                _fliper.Flip(_userInput.AxisX);
+                _playerMover.Move(_rigidbody2D, _userService.AxisX);
+                _fliper.Flip(_userService.AxisX);
             }
 
             if (_groundChecker.IsGrounded == true)
-                _playerAnimator.SetMoveAnimation(_userInput.AxisX);
+                _playerAnimator.SetMoveAnimation(_userService.AxisX);
 
             _playerAnimator.SetJumpAnimation(_groundChecker.IsGrounded != true);
         }

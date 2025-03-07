@@ -462,6 +462,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _overlapRadius: 10
+  _playerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &135001116 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4946063287923433464, guid: 300e71dce10a00c4c8922193a8cca8f2, type: 3}
@@ -1611,6 +1614,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _overlapRadius: 10
+  _playerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &593222334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23520,6 +23526,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _overlapRadius: 0.05
+  _groundMask:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!114 &1177292734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23532,6 +23541,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4daff9ee88dbf8a40867d92cc6e18218, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactor: {fileID: 1177292734}
 --- !u!114 &1177292735
 MonoBehaviour:
   m_ObjectHideFlags: 0

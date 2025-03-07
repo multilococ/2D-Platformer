@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class UserInput : MonoBehaviour
+public class UserService : MonoBehaviour
 {
     private readonly int LeftMouseButon = 0;
 
