@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerAnimator _playerAnimator;
     [SerializeField] private Fliper _fliper;
     [SerializeField] private Combat _combat;
-    [SerializeField] private Health _healt;
 
     private Rigidbody2D _rigidbody2D;
 

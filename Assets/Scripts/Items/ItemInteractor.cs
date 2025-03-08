@@ -2,7 +2,15 @@ using UnityEngine;
 
 public class ItemInteractor  : MonoBehaviour
 {
-    [SerializeField] private ItemInteractor _interactor;
+    [SerializeField] private Health _health;
+    [SerializeField] private Wallet _wallet;
+
+    private ItemInteractor _interactor;
+
+    private void Awake()
+    {
+        _interactor = this;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -11,4 +19,15 @@ public class ItemInteractor  : MonoBehaviour
             takeable.Accept(_interactor);
         }
     }
+
+    public void ColletCoint(Coin coin) 
+    {
+        _wallet.Add(coin.Value);
+    }
+
+    public void ReceiveTreatment(MedKit medKit) 
+    {
+        _health.ReceiveTreatment(medKit.RecoverableHealth);
+    }
+
 }

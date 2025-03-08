@@ -18,6 +18,6 @@ public class Item : MonoBehaviour, ITakeable
 
     protected virtual void Handle(ItemInteractor interactor) 
     {
-        Debug.Log("CoinCollected");   
+        Debug.Log("ItemColleted");   
     }
 }
