@@ -7,10 +7,21 @@ public class Health : MonoBehaviour, IDamageable , IHealingable
     private float _min = 0;
     private float _current = 100;
 
+    public float Max => _max;
+    public float Current => _current;
+
     public event Action<float> Changed;
     public event Action Died;
     public event Action TakedDamage;
 
+    private void Awake()
+    {
+        if (_current > _max)
+            _current = _max;
+
+        if (_current < _min)
+            _current = _min;
+    }
     public void TakeDamage(float damage)
     {
         TakedDamage?.Invoke();
@@ -28,8 +39,6 @@ public class Health : MonoBehaviour, IDamageable , IHealingable
         {
             Died?.Invoke();
         }
-
-        Debug.Log(transform.name + " Health : " + _current);
     }
 
     public void ReceiveTreatment(float treatment)
@@ -39,7 +48,6 @@ public class Health : MonoBehaviour, IDamageable , IHealingable
         if (_current > _max)
             _current = _max;
 
-        Debug.Log("Riceived Treatment" + transform.name + " hp : " + _current);
         Changed?.Invoke(_current);
     }
 }
