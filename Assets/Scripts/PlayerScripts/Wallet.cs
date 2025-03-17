@@ -16,7 +16,6 @@ public class Wallet : MonoBehaviour
     {
         if (value > 0)
         {
-            Debug.Log("Player Wallet : " + _currentValue);
             _currentValue += value;
             Changed?.Invoke(_currentValue);
         }

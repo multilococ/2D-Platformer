@@ -51,7 +51,6 @@ public class ItemSpawner : MonoBehaviour
     {
         yield return _waitForSeconds;
 
-        Debug.Log("SpawnItem in : " + spawnPoint.name);
         spawnPoint.SetItem(_creater.GetPrefab(spawnPoint.transform.position));
     }
 }

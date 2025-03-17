@@ -5,7 +5,7 @@ public class Health : MonoBehaviour, IDamageable , IHealingable
 {
     private float _max = 100;
     private float _min = 0;
-    private float _current = 100;
+   [SerializeField] private float _current = 100;
 
     public float Max => _max;
     public float Current => _current;
@@ -33,12 +33,12 @@ public class Health : MonoBehaviour, IDamageable , IHealingable
             _current = _min;
         }
 
-        Changed?.Invoke(_current);
-
         if (_current == _min)
         {
             Died?.Invoke();
         }
+
+        Changed?.Invoke(_current);
     }
 
     public void ReceiveTreatment(float treatment)

@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private PlayerAnimator _playerAnimator;
     [SerializeField] private Fliper _fliper;
     [SerializeField] private Combat _combat;
+    [SerializeField] private VampirismAbility _vampirismAbility;
 
     private Rigidbody2D _rigidbody2D;
 
@@ -22,12 +23,14 @@ public class Player : MonoBehaviour
     {
         _userService.SpacePresed += MakeJump;
         _userService.LeftMouseButtonPressed += MakeAttack;
+        _userService.RightMouseButtonPressed += _vampirismAbility.Use;
     }
 
     private void OnDisable()
     {
         _userService.SpacePresed -= MakeJump;
         _userService.LeftMouseButtonPressed -= MakeAttack;
+        _userService.RightMouseButtonPressed -= _vampirismAbility.Use;
     }
 
     private void FixedUpdate()

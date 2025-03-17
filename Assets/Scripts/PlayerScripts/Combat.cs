@@ -3,13 +3,10 @@ using UnityEngine;
 
 public class Combat : MonoBehaviour
 {
-    private const string EnemyLayer = nameof(EnemyLayer);
-
     [SerializeField] private Transform _hitPoint;
+    [SerializeField] private LayerMask _enemyMask;
     [SerializeField] private float _hitPointRadius;
     [SerializeField] private float _attackDelay = 0.3f;
-
-    private LayerMask _enemyMask;
 
     private WaitForSeconds _waitForSeconds;
 
@@ -19,7 +16,6 @@ public class Combat : MonoBehaviour
 
     private void Awake()
     {
-        _enemyMask = LayerMask.GetMask(EnemyLayer);
         CanAttack = true;
         _waitForSeconds = new WaitForSeconds(_attackDelay);
     }
