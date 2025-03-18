@@ -36,7 +36,6 @@ public class VampirismAbility : MonoBehaviour
     {
         if (_isAvailable == true)
         {
-            Debug.Log("Ability is Active");
             _isAvailable = false;
             StartCoroutine(AttackEnemyForTiming());
         }
@@ -84,7 +83,6 @@ public class VampirismAbility : MonoBehaviour
 
             if (closestEnemy != null && closestEnemy.TryGetComponent(out IDamageable damageable))
             {
-                Debug.Log(closestEnemy.name + " - in Vapirism Area");
                 damageable.TakeDamage(_damage);
             }
 
@@ -95,7 +93,6 @@ public class VampirismAbility : MonoBehaviour
 
 
         EndEffect?.Invoke();
-        Debug.Log("Ability is OFF");
         StartCoroutine(WaitForCoolDown());
     }
 
@@ -104,7 +101,6 @@ public class VampirismAbility : MonoBehaviour
         yield return _waitForCoolDownSeconds;
 
         _isAvailable = true;
-        Debug.Log("Ability is Avaliable");
         Availabled?.Invoke();
     }
 }
